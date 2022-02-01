@@ -15,7 +15,7 @@ def find_all_users_id(data: dict)->list:
     user_id = []
     idx = 0
     d = {}
-    
+    indx = -1
     while idx < len(msg):
         #print(msg[idx])
         #stroka = " ".join(msg[idx])
@@ -25,11 +25,13 @@ def find_all_users_id(data: dict)->list:
         for k,v in d.items():
             if k == "actor_id":
                 user_id.append(v)
-        idx += 1
-        
+        idx += 1    
         d = {}
-        
-    return user_id
+        user_id2 = []
+        for item in user_id:
+            if item not in user_id2:
+                user_id2.append(item)
+    return user_id2
 
 data = read_data('data/result.json')
 print(find_all_users_id(data))
