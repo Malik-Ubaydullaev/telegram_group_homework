@@ -9,4 +9,28 @@ def find_all_users_name(data: dict)->list:
     Returns:
         list: List containing all the users name.
     """
-    return
+    msg = []
+    msg = data['messages']
+    name = []
+    idx = 0
+    d = {}
+    
+    while idx < len(msg):
+        #print(msg[idx])
+        #stroka = " ".join(msg[idx])
+        #print(stroka)
+        #print(type(msg[idx]))
+        d = msg[idx]
+        for k,v in d.items():
+            if k == "actor":
+                name.append(v)
+        idx += 1    
+        d = {}
+        name2 = []
+        for item in name:
+            if item not in name2:
+                name2.append(item)
+    return name2
+
+data = read_data('data/result.json')
+print(find_all_users_name(data))
